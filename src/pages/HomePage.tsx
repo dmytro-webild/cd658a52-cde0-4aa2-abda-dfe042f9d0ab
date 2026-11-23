@@ -163,7 +163,7 @@ export default function HomePage() {
       </div>
 
       <div id="training" data-webild-section="AiTrainingSection" data-webild-section-id="AiTrainingSection-1" data-section="training">
-        <AiTrainingSection imageSrc="https://images.pexels.com/photos/33755543/pexels-photo-33755543.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" />
+        <AiTrainingSection />
       </div>
 
       <div id="supported-platforms" data-webild-section="SupportedPlatformsSection" data-webild-section-id="SupportedPlatformsSection-1" data-section="supported-platforms">
