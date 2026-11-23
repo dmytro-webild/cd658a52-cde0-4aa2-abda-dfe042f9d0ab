@@ -133,6 +133,24 @@ export default function HomePage() {
               ),
               imageSrc: "https://img.b2bpic.net/free-photo/focused-business-partners-looking-laptop-office_74855-4210.jpg",
               href: "#contact"
+            },
+            {
+              title: "AI-Powered Customer Support",
+              description: t("บริการ ลูกค้า แบบ อัตโนมัติ ตลอด 24/7 รวดเร็ว แม่นยำ", "24/7 automated customer support and smart assistance"),
+              facts: t(
+                [
+                  "Input: ข้อความ คำถาม จาก ลูกค้า 24/7",
+                  "AI: วิเคราะห์ ประมวลผล ตอบ อัตโนมัติ",
+                  "Action: สรุป รายงาน และ ส่งต่อ เคส สำคัญ"
+                ],
+                [
+                  "Input: 24/7 Customer inquiries & tickets",
+                  "AI: Automated analysis & quick resolution",
+                  "Action: Ticket summary & escalation routing"
+                ]
+              ),
+              imageSrc: "https://img.b2bpic.net/free-photo/business-manager-videocall-with-worker-attending-briefing-meeting_482257-126371.jpg",
+              href: "#contact"
             }
           ]}
         />
