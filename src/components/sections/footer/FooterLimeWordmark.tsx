@@ -78,8 +78,12 @@ const FooterLimeWordmark = ({
         <div className="flex flex-col gap-12 lg:flex-row lg:justify-between lg:gap-[var(--gap)]">
           <div className="flex max-w-[25rem] flex-col items-start gap-4">
             {logoSrc && (
-              <motion.div {...rise(0)}>
-                <img src={logoSrc} alt={wordmark ?? "Company Logo"} className="h-8 md:h-10 w-auto max-w-[12rem] object-contain mb-1" />
+              <motion.div {...rise(0)} className="flex items-center gap-3 mb-1">
+                <img src={logoSrc} alt={wordmark ?? "Company Logo"} className="h-10 md:h-12 w-auto max-w-[16rem] object-contain filter drop-shadow-md" />
+                <div className="flex flex-col text-left justify-center">
+                  <span className="font-extrabold text-base md:text-lg leading-tight tracking-tight text-white">{wordmark ?? "BYITS"}</span>
+                  <span className="text-[9px] md:text-[10px] text-primary font-bold tracking-wider uppercase whitespace-nowrap mt-0.5">BEYOND IT SOLUTIONS CO.,LTD.</span>
+                </div>
               </motion.div>
             )}
             {description && (

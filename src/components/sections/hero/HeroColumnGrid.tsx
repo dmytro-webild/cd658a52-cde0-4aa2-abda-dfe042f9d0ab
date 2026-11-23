@@ -101,16 +101,16 @@ const HeroColumnGrid = ({
         >
           <motion.div
             {...rise(introDelay > 0.1 ? introDelay - 0.1 : 0)}
-            className="mb-5 inline-flex items-center gap-3 px-4 py-2 rounded-full bg-card/90 border border-primary/50 backdrop-blur-md shadow-xl"
+            className="mb-5 inline-flex items-center gap-3.5 px-5 py-2.5 rounded-full bg-card/95 border border-primary/60 backdrop-blur-md shadow-2xl"
           >
             <img
-              src="https://storage.googleapis.com/webild/users/user_3MVXxuJnaQd6WXXoRiQdmiVZRX7/uploaded-1795440569491-7wr8bf8n.png"
+              src="https://storage.googleapis.com/webild/users/user_3MVXxuJnaQd6WXXoRiQdmiVZRX7/uploaded-1795449424437-w0zxe8y6.png"
               alt="BYITS Logo Symbol"
-              className="h-7 md:h-8 w-auto object-contain shrink-0"
+              className="h-9 md:h-11 w-auto object-contain shrink-0 filter drop-shadow-md"
             />
             <div className="flex flex-col text-left">
-              <span className="font-extrabold text-sm md:text-base tracking-tight text-white leading-none">BYITS</span>
-              <span className="text-[10px] md:text-xs text-primary font-semibold tracking-wider uppercase whitespace-nowrap mt-0.5">BEYOND IT SOLUTIONS CO.,LTD.</span>
+              <span className="font-extrabold text-base md:text-lg tracking-tight text-white leading-none">BYITS</span>
+              <span className="text-[10px] md:text-xs text-primary font-bold tracking-wider uppercase whitespace-nowrap mt-0.5">BEYOND IT SOLUTIONS CO.,LTD.</span>
             </div>
           </motion.div>
 

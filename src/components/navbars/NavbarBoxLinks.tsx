@@ -55,21 +55,21 @@ const NavbarBoxLinks = ({
   });
 
   const logo = (
-    <div className="flex items-center gap-2.5">
+    <div className="flex items-center gap-3">
       {logoSrc ? (
         <img
           src={logoSrc}
           alt={`${brand} Logo Symbol`}
           loading="eager"
           decoding="async"
-          className="h-7 md:h-8 w-auto object-contain shrink-0"
+          className="h-9 sm:h-10 md:h-11 w-auto object-contain shrink-0 filter drop-shadow-sm"
         />
       ) : (
         <span className="font-bold text-base text-white">{brand}</span>
       )}
       <div className="flex flex-col text-left justify-center">
-        <span className="font-extrabold text-xs md:text-sm leading-tight tracking-tight text-white">{brand}</span>
-        <span className="text-[8px] sm:text-[9px] md:text-[10px] text-primary font-semibold tracking-wider uppercase whitespace-nowrap leading-none mt-0.5">BEYOND IT SOLUTIONS CO.,LTD.</span>
+        <span className="font-extrabold text-sm md:text-base leading-tight tracking-tight text-white">{brand}</span>
+        <span className="text-[9px] sm:text-[10px] md:text-[11px] text-primary font-bold tracking-wider uppercase whitespace-nowrap leading-none mt-0.5">BEYOND IT SOLUTIONS CO.,LTD.</span>
       </div>
     </div>
   );
