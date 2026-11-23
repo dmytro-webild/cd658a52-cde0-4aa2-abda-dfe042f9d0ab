@@ -55,7 +55,13 @@ const NavbarBoxLinks = ({
   });
 
   const logo = logoSrc ? (
-    <img src={logoSrc} alt={brand} loading="eager" decoding="async" className="h-7 md:h-8 w-auto max-w-[10rem] object-contain shrink-0" />
+    <img
+      src={logoSrc}
+      alt={brand}
+      loading="eager"
+      decoding="async"
+      className="h-9 md:h-11 lg:h-12 w-auto max-w-[13rem] md:max-w-[16rem] object-contain shrink-0 transition-transform duration-200 group-hover:scale-[1.02]"
+    />
   ) : (
     <p className="whitespace-nowrap font-[family-name:var(--font-heading)] text-[length:var(--text-body-lg)] leading-none tracking-[-0.05em]">{brand}</p>
   );
@@ -100,8 +106,8 @@ const NavbarBoxLinks = ({
         className="fixed inset-x-0 top-[var(--gutter)] z-50"
       >
         <div className="mx-auto flex w-[var(--container)] items-start justify-between gap-[1rem]">
-          <div className="flex min-w-0 flex-1 items-center justify-between gap-[1.5rem] rounded-[0.5rem] bg-card p-[1rem] text-card-foreground lg:flex-none lg:justify-start lg:py-[1.25rem]">
-            <a href="#" className="flex min-w-0 shrink-0 items-center">
+          <div className="flex min-w-0 flex-1 items-center justify-between gap-[1.5rem] rounded-[0.5rem] bg-card p-[0.75rem] md:p-[1rem] text-card-foreground lg:flex-none lg:justify-start lg:py-[1rem]">
+            <a href="#" className="group flex min-w-0 shrink-0 items-center py-1.5 px-3 md:px-3.5 rounded-lg bg-background/60 border border-border/60 hover:border-primary/50 hover:bg-background/90 transition-all shadow-xs mr-1 lg:mr-3">
               {logo}
             </a>
             {navItems.length > 0 && (
@@ -157,8 +163,8 @@ const NavbarBoxLinks = ({
               <div className="absolute inset-y-0 right-0 w-px bg-border" />
             </div>
 
-            <div className="relative mx-auto mt-[var(--gutter)] flex w-[var(--container)] items-center justify-between gap-[1rem] rounded-[0.5rem] bg-card p-[1rem] text-card-foreground">
-              <a href="#" onClick={() => setOpen(false)} className="flex min-w-0 shrink-0 items-center">
+            <div className="relative mx-auto mt-[var(--gutter)] flex w-[var(--container)] items-center justify-between gap-[1rem] rounded-[0.5rem] bg-card p-[0.75rem] md:p-[1rem] text-card-foreground">
+              <a href="#" onClick={() => setOpen(false)} className="group flex min-w-0 shrink-0 items-center py-1.5 px-3 md:px-3.5 rounded-lg bg-background/60 border border-border/60 hover:border-primary/50 transition-all shadow-xs">
                 {logo}
               </a>
               <div className="flex items-center gap-3">
