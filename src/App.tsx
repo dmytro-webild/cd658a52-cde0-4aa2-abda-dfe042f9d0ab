@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import { ReactLenis } from 'lenis/react'
 import { routes } from './routes'
 import Layout from './components/Layout'
+import { LanguageProvider } from './context/LanguageContext'
 
 const pages = import.meta.glob('./pages/*.tsx')
 
@@ -224,16 +225,18 @@ function App() {
             </div>
           }
         >
-          <Routes>
-            <Route element={<Layout />}>
-              {routes.map((route) => {
-                const Page = getPageComponent(route.pageFile)
-                if (!Page) return null
-                return <Route key={route.path} path={route.path} element={<Page />} />
-              })}
-            </Route>
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
+          <LanguageProvider>
+            <Routes>
+              <Route element={<Layout />}>
+                {routes.map((route) => {
+                  const Page = getPageComponent(route.pageFile)
+                  if (!Page) return null
+                  return <Route key={route.path} path={route.path} element={<Page />} />
+                })}
+              </Route>
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </LanguageProvider>
         </Suspense>
       </RenderErrorBoundary>
     </ReactLenis>
