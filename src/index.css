@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500&family=Geist:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Sarabun:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter+Tight:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=PT+Mono&display=swap");
 @import "tailwindcss";
 @import "./styles/animations.css";
@@ -41,8 +41,8 @@
   --tint-2: #021a12;
   --tint-3: #081622;
 
-  --font-heading: "Inter Tight", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-body: "Geist", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-heading: "Inter Tight", "Sarabun", "Noto Sans Thai", sans-serif;
+  --font-body: "Sarabun", "Noto Sans Thai", "Inter", sans-serif;
   --font-label: "PT Mono", ui-monospace, Menlo, monospace;
   --heading-weight: 400;
   --heading-tracking: -0.04em;
@@ -126,14 +126,14 @@
     margin: 0;
     background-color: var(--background);
     color: var(--foreground);
-    font-family: "Geist", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: var(--font-body);
     font-weight: 400;
     letter-spacing: -0.01em;
     min-height: 100vh;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: "Inter Tight", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: var(--font-heading);
     font-weight: var(--heading-weight);
     letter-spacing: var(--heading-tracking);
     line-height: var(--heading-leading);

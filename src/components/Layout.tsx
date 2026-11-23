@@ -1,8 +1,11 @@
 import { Outlet } from "react-router-dom";
 import NavbarBoxLinks from "@/components/navbars/NavbarBoxLinks";
 import FooterLimeWordmark from "@/components/sections/footer/FooterLimeWordmark";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Layout() {
+  const { t } = useLanguage();
+
   return (
     <div className="relative isolate min-h-svh flex flex-col bg-background text-foreground" data-button="default" data-card="outline" data-pattern="grid">
       <header data-webild-section="Header">
@@ -11,26 +14,28 @@ export default function Layout() {
           logoSrc="https://storage.googleapis.com/webild/users/user_3MVXxuJnaQd6WXXoRiQdmiVZRX7/uploaded-1795438520588-g0x1llz0.png"
           navItems={[
             {
-              name: "โซลูชัน AI",
+              name: t("โซลูชัน AI", "AI Solutions"),
               href: "#services"
             },
             {
-              name: "เสียงตอบรับ",
+              name: t("เสียงตอบรับ", "Testimonials"),
               href: "#testimonial"
             },
             {
-              name: "ทีมงานผู้เชี่ยวชาญ",
+              name: t("ทีมงานผู้เชี่ยวชาญ", "Our Team"),
               href: "#team"
             },
             {
-              name: "คำถามที่พบบ่อย",
+              name: t("คำถามที่พบบ่อย", "FAQ"),
               href: "#faq"
             }
           ]}
           primaryButton={{
-            text: "ปรึกษาโซลูชัน",
+            text: t("ปรึกษาโซลูชัน", "Consultation"),
             href: "#contact"
           }}
+          menuText={t("เมนู", "Menu")}
+          closeText={t("ปิด", "Close")}
           introDelay={1.7}
         />
       </header>
@@ -40,14 +45,17 @@ export default function Layout() {
       <footer data-webild-section="Footer" data-section="footer">
         <FooterLimeWordmark
           logoSrc="https://storage.googleapis.com/webild/users/user_3MVXxuJnaQd6WXXoRiQdmiVZRX7/uploaded-1795438520588-g0x1llz0.png"
-          description="ยกระดับการทำงานขององค์กรด้วย AI โซลูชัน เชื่อมต่อข้อมูล ระบบ และงานขององค์กรเพื่อให้ทีมทำงานได้เร็วขึ้นและปลอดภัย"
+          description={t(
+            "ยกระดับการทำงานขององค์กรด้วย AI โซลูชัน เชื่อมต่อข้อมูล ระบบ และงานขององค์กรเพื่อให้ทีมทำงานได้เร็วขึ้นและปลอดภัย",
+            "Elevate your enterprise productivity with tailored AI solutions. Connect data, systems, and operations seamlessly and securely."
+          )}
           primaryButton={{
-            text: "ปรึกษาโซลูชัน",
+            text: t("ปรึกษาโซลูชัน", "Consultation"),
             href: "#contact"
           }}
           columns={[
             {
-              title: "โซลูชัน",
+              title: t("โซลูชัน", "Solutions"),
               links: [
                 {
                   text: "Enterprise AI Platform",
@@ -72,22 +80,22 @@ export default function Layout() {
               ]
             },
             {
-              title: "เมนูหลัก",
+              title: t("เมนูหลัก", "Navigation"),
               links: [
                 {
-                  text: "หน้าแรก",
+                  text: t("หน้าแรก", "Home"),
                   href: "#hero"
                 },
                 {
-                  text: "คำถามที่พบบ่อย",
+                  text: t("คำถามที่พบบ่อย", "FAQ"),
                   href: "#faq"
                 },
                 {
-                  text: "ความเห็นจากผู้ใช้จริง",
+                  text: t("ความเห็นจากผู้ใช้จริง", "Testimonials"),
                   href: "#testimonial"
                 },
                 {
-                  text: "ติดต่อทีมงาน",
+                  text: t("ติดต่อทีมงาน", "Contact"),
                   href: "#contact"
                 }
               ]

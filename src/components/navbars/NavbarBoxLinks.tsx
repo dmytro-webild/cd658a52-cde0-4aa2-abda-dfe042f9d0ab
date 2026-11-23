@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { AnimatePresence, animate, motion, useMotionValue, useMotionValueEvent, useReducedMotion, useScroll } from "motion/react";
 import useMenuDialog from "@/components/kit/useMenuDialog";
 import HydraArrowPill from "@/components/kit/HydraArrowPill";
+import { useLanguage } from "@/context/LanguageContext";
 
 type NavItem = { name: string; href: string };
 type Button = { text: string; href: string };
@@ -36,6 +37,7 @@ const NavbarBoxLinks = ({
   closeText = "Close",
   introDelay = 0,
 }: NavbarBoxLinksProps) => {
+  const { language, setLanguage } = useLanguage();
   const reduce = useReducedMotion();
   const [open, setOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -58,6 +60,35 @@ const NavbarBoxLinks = ({
     <p className="whitespace-nowrap font-[family-name:var(--font-heading)] text-[length:var(--text-body-lg)] leading-none tracking-[-0.05em]">{brand}</p>
   );
 
+  const LangSwitcher = ({ className = "" }: { className?: string }) => (
+    <div className={`inline-flex items-center rounded-full bg-card/90 border border-border p-0.5 text-xs font-mono shadow-sm shrink-0 ${className}`}>
+      <button
+        type="button"
+        onClick={() => setLanguage("th")}
+        aria-label="สลับเป็นภาษาไทย"
+        className={`px-2.5 py-1 rounded-full font-semibold transition-all duration-200 cursor-pointer ${
+          language === "th"
+            ? "bg-primary text-primary-cta-text shadow"
+            : "text-muted-foreground hover:text-foreground"
+        }`}
+      >
+        TH
+      </button>
+      <button
+        type="button"
+        onClick={() => setLanguage("en")}
+        aria-label="Switch to English"
+        className={`px-2.5 py-1 rounded-full font-semibold transition-all duration-200 cursor-pointer ${
+          language === "en"
+            ? "bg-primary text-primary-cta-text shadow"
+            : "text-muted-foreground hover:text-foreground"
+        }`}
+      >
+        EN
+      </button>
+    </div>
+  );
+
   return (
     <>
       <motion.nav
@@ -69,7 +100,7 @@ const NavbarBoxLinks = ({
         className="fixed inset-x-0 top-[var(--gutter)] z-50"
       >
         <div className="mx-auto flex w-[var(--container)] items-start justify-between gap-[1rem]">
-          <div className="flex min-w-0 flex-1 items-center justify-between gap-[2rem] rounded-[0.5rem] bg-card p-[1rem] text-card-foreground lg:flex-none lg:justify-start lg:py-[1.25rem]">
+          <div className="flex min-w-0 flex-1 items-center justify-between gap-[1.5rem] rounded-[0.5rem] bg-card p-[1rem] text-card-foreground lg:flex-none lg:justify-start lg:py-[1.25rem]">
             <a href="#" className="flex min-w-0 shrink-0 items-center">
               {logo}
             </a>
@@ -84,14 +115,18 @@ const NavbarBoxLinks = ({
                 ))}
               </ul>
             )}
-            <button
-              type="button"
-              aria-expanded={open}
-              onClick={() => setOpen(true)}
-              className="whitespace-nowrap font-[family-name:var(--font-label)] text-[length:var(--text-label)] uppercase leading-none lg:hidden"
-            >
-              {menuText}
-            </button>
+            <LangSwitcher className="hidden lg:inline-flex ml-2" />
+            <div className="flex items-center gap-3 lg:hidden">
+              <LangSwitcher />
+              <button
+                type="button"
+                aria-expanded={open}
+                onClick={() => setOpen(true)}
+                className="whitespace-nowrap font-[family-name:var(--font-label)] text-[length:var(--text-label)] uppercase leading-none"
+              >
+                {menuText}
+              </button>
+            </div>
           </div>
           {primaryButton && (
             <div className="hidden lg:block">
@@ -126,9 +161,12 @@ const NavbarBoxLinks = ({
               <a href="#" onClick={() => setOpen(false)} className="flex min-w-0 shrink-0 items-center">
                 {logo}
               </a>
-              <button type="button" onClick={() => setOpen(false)} className="whitespace-nowrap font-[family-name:var(--font-label)] text-[length:var(--text-label)] uppercase leading-none">
-                {closeText}
-              </button>
+              <div className="flex items-center gap-3">
+                <LangSwitcher />
+                <button type="button" onClick={() => setOpen(false)} className="whitespace-nowrap font-[family-name:var(--font-label)] text-[length:var(--text-label)] uppercase leading-none">
+                  {closeText}
+                </button>
+              </div>
             </div>
 
             <ul className="relative mx-auto mt-[3rem] flex w-[var(--container)] flex-col gap-[0.5rem]">
