@@ -36,7 +36,7 @@ export default function AiTrainingSection() {
 
   const processSteps = ["LEARN", "APPLY", "IMPROVE"];
 
-  const refImageSrc = "https://img.b2bpic.net/free-photo/3d-modern-background-with-rainbow-coloured-flowing-particles-design_1048-20453.jpg";
+  const refImageSrc = "https://images.pexels.com/photos/3184325/pexels-photo-3184325.jpeg?auto=compress&cs=tinysrgb&w=1600";
 
   return (
     <section id="training" className="relative py-24 bg-[#071727] text-foreground border-t border-border/60 overflow-hidden">
@@ -128,7 +128,7 @@ export default function AiTrainingSection() {
               <div className="relative flex-1 min-h-[300px] w-full rounded-xl overflow-hidden bg-slate-900">
                 <img
                   src={refImageSrc}
-                  alt="AI & Digital Training 3D Visualization"
+                  alt={t("ภาพบรรยากาศการอบรม AI และดิจิทัล", "AI & Digital Training Workshop")}
                   className="w-full h-full object-cover object-center transform group-hover:scale-[1.03] transition-transform duration-500"
                 />
               </div>
