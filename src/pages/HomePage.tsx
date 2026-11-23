@@ -149,7 +149,7 @@ export default function HomePage() {
                   "Action: Ticket summary & escalation routing"
                 ]
               ),
-              imageSrc: "https://img.b2bpic.net/free-photo/business-manager-videocall-with-worker-attending-briefing-meeting_482257-126371.jpg",
+              imageSrc: "https://img.b2bpic.net/free-photo/business-manager-videocall-with-worker-attending-briefing-meeting_482257-126371.jpg?_wi=1",
               href: "#contact"
             }
           ]}
@@ -246,7 +246,7 @@ export default function HomePage() {
               imageAlt: "Manager assessing reports"
             },
             {
-              imageSrc: "https://img.b2bpic.net/free-photo/business-manager-videocall-with-worker-attending-briefing-meeting_482257-126371.jpg",
+              imageSrc: "https://img.b2bpic.net/free-photo/business-manager-videocall-with-worker-attending-briefing-meeting_482257-126371.jpg?_wi=2",
               imageAlt: "Business manager on videocall"
             }
           ]}
