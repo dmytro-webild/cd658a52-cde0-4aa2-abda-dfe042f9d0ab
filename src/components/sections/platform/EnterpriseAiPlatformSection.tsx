@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "motion/react";
 import {
   MessageSquare,
@@ -11,14 +10,12 @@ import {
   Bot,
   Brain,
   Headphones,
-  Sparkles,
-  Maximize2
+  Sparkles
 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
 export default function EnterpriseAiPlatformSection() {
   const { t } = useLanguage();
-  const [showImageModal, setShowImageModal] = useState(false);
 
   const leftModules = [
     {
@@ -82,8 +79,6 @@ export default function EnterpriseAiPlatformSection() {
     }
   ];
 
-  const imageSrc = "https://storage.googleapis.com/webild/users/user_3MVXxuJnaQd6WXXoRiQdmiVZRX7/uploaded-1795451278301-ac6r7g40.png";
-
   return (
     <section id="enterprise-platform" className="relative py-24 bg-[#05111b] text-foreground border-t border-border/60 overflow-hidden">
       {/* Glow Effects */}
@@ -124,37 +119,21 @@ export default function EnterpriseAiPlatformSection() {
           </motion.p>
         </div>
 
-        {/* Original Diagram Image Showcase (Featured Banner) */}
+        {/* Featured Topic Banner */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16 relative rounded-2xl overflow-hidden border border-emerald-500/30 bg-slate-950/80 p-2 shadow-2xl group"
+          className="mb-12 rounded-2xl border border-emerald-500/30 bg-slate-950/80 p-6 md:p-8 text-center shadow-2xl relative overflow-hidden"
         >
-          <div className="relative rounded-xl overflow-hidden bg-slate-900 aspect-[2/1] max-h-[480px]">
-            <img
-              src={imageSrc}
-              alt="BYITS Enterprise AI Platform Architecture"
-              className="w-full h-full object-cover object-center transform group-hover:scale-[1.01] transition-transform duration-300"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent flex items-end justify-between p-6">
-              <div>
-                <span className="text-xs font-mono text-emerald-400 font-semibold tracking-wider block mb-1">
-                  {t("ARCHITECTURAL OVERVIEW", "ARCHITECTURAL OVERVIEW")}
-                </span>
-                <h3 className="text-lg md:text-2xl font-bold text-white">
-                  {t("BYITS Enterprise AI Platform 8 Modules Diagram", "BYITS Enterprise AI Platform 8 Modules Diagram")}
-                </h3>
-              </div>
-              <button
-                type="button"
-                onClick={() => setShowImageModal(true)}
-                className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-950/90 border border-emerald-500/50 text-emerald-300 hover:bg-emerald-800/90 text-xs font-bold transition-all cursor-pointer shadow-lg"
-              >
-                <Maximize2 className="w-4 h-4" />
-                {t("ขยายภาพพรีวิว", "Expand Diagram")}
-              </button>
-            </div>
+          <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/5 via-teal-500/10 to-emerald-500/5 pointer-events-none" />
+          <div className="relative z-10">
+            <span className="text-xs font-mono text-emerald-400 font-semibold tracking-wider block mb-2 uppercase">
+              {t("ARCHITECTURAL OVERVIEW", "ARCHITECTURAL OVERVIEW")}
+            </span>
+            <h3 className="text-xl md:text-3xl font-bold text-white">
+              {t("BYITS Enterprise AI Platform 8 Modules Diagram", "BYITS Enterprise AI Platform 8 Modules Diagram")}
+            </h3>
           </div>
         </motion.div>
 
@@ -259,25 +238,6 @@ export default function EnterpriseAiPlatformSection() {
           </a>
         </div>
       </div>
-
-      {/* Lightbox / Image Modal */}
-      {showImageModal && (
-        <div
-          className="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4"
-          onClick={() => setShowImageModal(false)}
-        >
-          <div className="relative max-w-5xl w-full bg-slate-900 rounded-2xl p-4 border border-emerald-500/40">
-            <button
-              type="button"
-              onClick={() => setShowImageModal(false)}
-              className="absolute top-4 right-4 px-3 py-1.5 rounded-lg bg-emerald-950 text-emerald-400 font-bold text-xs border border-emerald-700"
-            >
-              {t("ปิด", "Close")}
-            </button>
-            <img src={imageSrc} alt="Platform Diagram Full" className="w-full rounded-xl" />
-          </div>
-        </div>
-      )}
     </section>
   );
 }
