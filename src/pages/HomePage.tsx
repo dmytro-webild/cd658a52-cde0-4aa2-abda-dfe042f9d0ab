@@ -1,9 +1,9 @@
 import HeroColumnGrid from "@/components/sections/hero/HeroColumnGrid";
 import ServicesIndustryTiles from "@/components/sections/features/ServicesIndustryTiles";
+import AiApiTokenSection from "@/components/sections/api-tokens/AiApiTokenSection";
+import SupportedPlatformsSection from "@/components/sections/platforms/SupportedPlatformsSection";
 import CtaPlusBand from "@/components/sections/statement/CtaPlusBand";
-import TeamLeadersBand from "@/components/sections/team/TeamLeadersBand";
 import FaqGlyphRows from "@/components/sections/faq/FaqGlyphRows";
-import TestimonialDeepCoverflow from "@/components/sections/testimonial/TestimonialDeepCoverflow";
 import ContactColumnWindow from "@/components/sections/contact/ContactColumnWindow";
 import LoaderHairlineColumns from "@/components/loaders/LoaderHairlineColumns";
 import { useLanguage } from "@/context/LanguageContext";
@@ -33,6 +33,10 @@ export default function HomePage() {
           imageAlt="abstract data visualization technology background"
           introDelay={1.7}
         />
+      </div>
+
+      <div id="api-tokens" data-webild-section="AiApiTokenSection" data-webild-section-id="AiApiTokenSection-1" data-section="api-tokens">
+        <AiApiTokenSection />
       </div>
 
       <div id="services" data-webild-section="ServicesIndustryTiles" data-webild-section-id="ServicesIndustryTiles-1" data-section="services">
@@ -134,6 +138,10 @@ export default function HomePage() {
         />
       </div>
 
+      <div id="supported-platforms" data-webild-section="SupportedPlatformsSection" data-webild-section-id="SupportedPlatformsSection-1" data-section="supported-platforms">
+        <SupportedPlatformsSection />
+      </div>
+
       <div id="cta" data-webild-section="CtaPlusBand" data-webild-section-id="CtaPlusBand-1" data-section="cta">
         <CtaPlusBand
           label={t("ติดต่อเรา", "CONTACT US")}
@@ -146,68 +154,6 @@ export default function HomePage() {
             text: t("ดูโซลูชันทั้งหมด", "Explore All Solutions"),
             href: "#services"
           }}
-        />
-      </div>
-
-      <div id="team" data-webild-section="TeamLeadersBand" data-webild-section-id="TeamLeadersBand-1" data-section="team" data-scene>
-        <TeamLeadersBand
-          title={t("ทีมผู้บริหารและผู้เชี่ยวชาญ BYITS", "BYITS Leadership & Specialist Team")}
-          button={{
-            text: t("ปรึกษาทีมงาน", "Contact Experts"),
-            href: "#contact"
-          }}
-          imageSrc="https://img.b2bpic.net/free-photo/people-sitting-desk-working-laptop_23-2147650862.jpg"
-          imageAlt="People sitting at desk working on laptop"
-          items={[
-            {
-              title: t("ธนกฤต วรโชติ", "Tanakrit Worachot"),
-              description: t("ประธานเจ้าหน้าที่บริหาร", "Chief Executive Officer (CEO)"),
-              imageSrc: "https://img.b2bpic.net/free-photo/asian-developer-standing-near-flipchart-looking-blonde-woman-glasses-indoor-portrait-brunette-businessman-writing-graph-white-board-listening-colleagues_197531-3768.jpg",
-              imageAlt: "Asian developer standing near flipchart"
-            },
-            {
-              title: t("ณิชารีย์ สุวรรณ", "Nicharee Suwan"),
-              description: t("ประธานฝ่ายเทคโนโลยี", "Chief Technology Officer (CTO)"),
-              imageSrc: "https://img.b2bpic.net/free-photo/tired-asian-young-businesswoman-sleeping-table_1262-2336.jpg",
-              imageAlt: "Asian businesswoman"
-            },
-            {
-              title: t("กิตติพงษ์ วิเศษ", "Kittipong Wiset"),
-              description: t("ผู้อำนวยการฝ่ายโซลูชัน AI", "Director of AI Solutions"),
-              imageSrc: "https://img.b2bpic.net/free-photo/annoyed-shocked-businessman-eyeglasses-using-tablet_1262-16870.jpg",
-              imageAlt: "Businessman using tablet"
-            },
-            {
-              title: t("ปรียาพร สายชล", "Preeyaporn Saichol"),
-              description: t("ผู้อำนวยการฝ่ายไซเบอร์", "Director of Cybersecurity"),
-              imageSrc: "https://img.b2bpic.net/free-photo/portrait-person-working-while-standing_23-2148961755.jpg",
-              imageAlt: "Portrait of person working while standing"
-            },
-            {
-              title: t("ศุภโชค ชัยชนะ", "Suphachok Chaichana"),
-              description: t("ผู้อำนวยการฝ่ายระบบคลาวด์", "Director of Cloud Solutions"),
-              imageSrc: "https://img.b2bpic.net/free-photo/cybersecurity-expert-monitoring-network-server-room_23-2152029083.jpg",
-              imageAlt: "Cybersecurity expert monitoring network"
-            },
-            {
-              title: t("มนัสวี รัตนกุล", "Manaswee Rattanakul"),
-              description: t("ผู้อำนวยการฝ่ายปฏิบัติการ", "Chief Operating Officer (COO)"),
-              imageSrc: "https://img.b2bpic.net/free-photo/portrait-business-woman-corporate-office-sitting-desk_482257-8055.jpg",
-              imageAlt: "Portrait of business woman sitting at desk"
-            },
-            {
-              title: t("ชินวัตร เมธา", "Chinawat Metha"),
-              description: t("หัวหน้าทีม AI Solutions", "Lead AI Solutions Engineer"),
-              imageSrc: "https://img.b2bpic.net/free-photo/young-man-wearing-white-clothes-using-tablet_23-2148910216.jpg",
-              imageAlt: "Young man using tablet"
-            },
-            {
-              title: t("พิมลพรรณ วงศ์สวัสดิ์", "Pimonpan Wongsawat"),
-              description: t("หัวหน้าฝ่ายดูแลลูกค้าองค์กร", "Head of Enterprise Accounts"),
-              imageSrc: "https://img.b2bpic.net/free-photo/portrait-goodlooking-young-blond-woman-wireless-headphones-listens-podcast-favourite_1258-253473.jpg",
-              imageAlt: "Portrait of young woman"
-            }
-          ]}
         />
       </div>
 
@@ -262,50 +208,6 @@ export default function HomePage() {
                 "ท่าน สามารถ ติดต่อ ทีมงาน เพื่อ นัดหมาย พูดคุย ประเมิน ความต้องการ และ ออกแบบ โซลูชัน ที่ เหมาะสม กับ ธุรกิจ ของ ท่าน ได้ โดย ไม่มี ค่าใช้จ่าย ใน ขั้น แรก",
                 "Simply contact our team to schedule a preliminary discovery meeting to assess your business needs—at zero obligation."
               )
-            }
-          ]}
-        />
-      </div>
-
-      <div id="testimonial" data-webild-section="TestimonialDeepCoverflow" data-webild-section-id="TestimonialDeepCoverflow-1" data-section="testimonial">
-        <TestimonialDeepCoverflow
-          title={t("ความประทับใจ จาก ผู้บริหาร องค์กร", "Executive Testimonials & Success Stories")}
-          description={t("ได้รับ ความไว้วางใจ จาก ผู้นำ องค์กร ยุคใหม่", "Trusted by forward-thinking leaders across industries.")}
-          items={[
-            {
-              name: t("สมศักดิ์ ก.", "Somsak K."),
-              role: "CTO",
-              quote: t("BYITS ช่วย ปฏิวัติ การทำงาน เอกสาร ของเรา ด้วย ระบบ AI ที่มี ประสิทธิภาพ", "BYITS revolutionized our document workflows with remarkably efficient AI automation."),
-              imageSrc: "https://img.b2bpic.net/free-photo/portrait-indigenous-businessman_23-2151201366.jpg",
-              imageAlt: "Portrait of businessman"
-            },
-            {
-              name: t("พิมพ์ ส.", "Phim S."),
-              role: "COO",
-              quote: t("การ เชื่อมต่อ ระบบ เป็นไป อย่าง ราบรื่น ช่วย เพิ่ม ผลงาน ได้ ทันที", "The system integration was seamless and delivered immediate productivity gains across departments."),
-              imageSrc: "https://img.b2bpic.net/free-photo/closeup-shot-smiling-attractive-female-looking-front_181624-25581.jpg",
-              imageAlt: "Closeup shot of female"
-            },
-            {
-              name: t("เดวิด ว.", "David W."),
-              role: "CEO",
-              quote: t("แนวทาง การรักษา ความปลอดภัย ไซเบอร์ ของ BYITS ช่วยให้ เรา มั่นใจ อย่างมาก", "BYITS's proactive cybersecurity and AI data protection give us full confidence."),
-              imageSrc: "https://img.b2bpic.net/free-photo/stylish-mature-male-browsing-tablet_23-2148673426.jpg",
-              imageAlt: "Male browsing tablet"
-            },
-            {
-              name: t("ลินดา อาร์.", "Linda R."),
-              role: "Head of Marketing",
-              quote: t("กระบวนการ AI ช่วย ประหยัด เวลา ให้ ทีมงาน ได้ หลาย ชั่วโมง ทุก สัปดาห์", "AI workflows save our marketing team dozens of hours every single week."),
-              imageSrc: "https://img.b2bpic.net/free-photo/close-up-young-business-person-doing-internship_23-2149305364.jpg",
-              imageAlt: "Young business person"
-            },
-            {
-              name: t("วิชัย ต.", "Wichai T."),
-              role: "Finance Director",
-              quote: t("การ สรุป ข้อมูล และ รายงาน ทาง การเงิน ง่ายขึ้น มาก ด้วย โซลูชัน AI", "Financial data analysis and executive reporting became much faster with BYITS AI."),
-              imageSrc: "https://img.b2bpic.net/free-photo/busy-open-plan-office_1098-12690.jpg",
-              imageAlt: "Busy Open Plan Office"
             }
           ]}
         />
