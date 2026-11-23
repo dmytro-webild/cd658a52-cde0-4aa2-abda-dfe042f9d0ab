@@ -14,16 +14,16 @@ export default function Layout() {
           logoSrc="https://storage.googleapis.com/webild/users/user_3MVXxuJnaQd6WXXoRiQdmiVZRX7/uploaded-1795440569491-7wr8bf8n.png"
           navItems={[
             {
+              name: t("บริการ AI API Token", "AI API & Tokens"),
+              href: "#api-tokens"
+            },
+            {
               name: t("โซลูชัน AI", "AI Solutions"),
               href: "#services"
             },
             {
-              name: t("เสียงตอบรับ", "Testimonials"),
-              href: "#testimonial"
-            },
-            {
-              name: t("ทีมงานผู้เชี่ยวชาญ", "Our Team"),
-              href: "#team"
+              name: t("แพลตฟอร์มที่รองรับ", "Supported Platforms"),
+              href: "#supported-platforms"
             },
             {
               name: t("คำถามที่พบบ่อย", "FAQ"),
@@ -31,7 +31,7 @@ export default function Layout() {
             }
           ]}
           primaryButton={{
-            text: t("ปรึกษาโซลูชัน", "Consultation"),
+            text: t("ปรึกษาเรื่อง AI API Token", "Consult on AI API Token"),
             href: "#contact"
           }}
           menuText={t("เมนู", "Menu")}
@@ -58,24 +58,24 @@ export default function Layout() {
               title: t("โซลูชัน", "Solutions"),
               links: [
                 {
-                  text: "Enterprise AI Platform",
-                  href: "#services"
-                },
-                {
                   text: "AI API & Token Services",
+                  href: "#api-tokens"
+                },
+                {
+                  text: "Enterprise AI Workflows",
                   href: "#services"
                 },
                 {
-                  text: "Digital Apps & Data",
-                  href: "#services"
+                  text: "Supported Technology Platforms",
+                  href: "#supported-platforms"
                 },
                 {
                   text: "Cybersecurity & Recovery",
-                  href: "#services"
+                  href: "#supported-platforms"
                 },
                 {
                   text: "Cloud Workplace & IT",
-                  href: "#services"
+                  href: "#supported-platforms"
                 }
               ]
             },
@@ -87,12 +87,16 @@ export default function Layout() {
                   href: "#hero"
                 },
                 {
-                  text: t("คำถามที่พบบ่อย", "FAQ"),
-                  href: "#faq"
+                  text: t("บริการ AI API Token", "AI API Tokens"),
+                  href: "#api-tokens"
                 },
                 {
-                  text: t("ความเห็นจากผู้ใช้จริง", "Testimonials"),
-                  href: "#testimonial"
+                  text: t("เทคโนโลยีที่รองรับ", "Supported Platforms"),
+                  href: "#supported-platforms"
+                },
+                {
+                  text: t("คำถามที่พบบ่อย", "FAQ"),
+                  href: "#faq"
                 },
                 {
                   text: t("ติดต่อทีมงาน", "Contact"),

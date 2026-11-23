@@ -54,16 +54,24 @@ const NavbarBoxLinks = ({
     animate(shift, hide ? -140 : 0, { duration: reduce ? 0 : 0.6, ease: EASE_OUT });
   });
 
-  const logo = logoSrc ? (
-    <img
-      src={logoSrc}
-      alt={brand}
-      loading="eager"
-      decoding="async"
-      className="h-9 md:h-11 lg:h-12 w-auto max-w-[13rem] md:max-w-[16rem] object-contain shrink-0 transition-transform duration-200 group-hover:scale-[1.02]"
-    />
-  ) : (
-    <p className="whitespace-nowrap font-[family-name:var(--font-heading)] text-[length:var(--text-body-lg)] leading-none tracking-[-0.05em]">{brand}</p>
+  const logo = (
+    <div className="flex items-center gap-2.5">
+      {logoSrc ? (
+        <img
+          src={logoSrc}
+          alt={`${brand} Logo Symbol`}
+          loading="eager"
+          decoding="async"
+          className="h-7 md:h-8 w-auto object-contain shrink-0"
+        />
+      ) : (
+        <span className="font-bold text-base text-white">{brand}</span>
+      )}
+      <div className="flex flex-col text-left justify-center">
+        <span className="font-extrabold text-xs md:text-sm leading-tight tracking-tight text-white">{brand}</span>
+        <span className="text-[8px] sm:text-[9px] md:text-[10px] text-primary font-semibold tracking-wider uppercase whitespace-nowrap leading-none mt-0.5">BEYOND IT SOLUTIONS CO.,LTD.</span>
+      </div>
+    </div>
   );
 
   const LangSwitcher = ({ className = "" }: { className?: string }) => (
