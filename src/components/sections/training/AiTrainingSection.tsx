@@ -1,18 +1,10 @@
 "use client";
 
 import { motion } from "motion/react";
-import { GraduationCap, Users, UserCheck, Sliders, ArrowRight, Bot } from "lucide-react";
+import { GraduationCap, Users, UserCheck, Sliders, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
-interface AiTrainingSectionProps {
-  imageSrc?: string;
-  imageAlt?: string;
-}
-
-export default function AiTrainingSection({
-  imageSrc = "https://images.pexels.com/photos/37733231/pexels-photo-37733231.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
-  imageAlt
-}: AiTrainingSectionProps) {
+export default function AiTrainingSection() {
   const { t } = useLanguage();
 
   const courses = [
@@ -43,6 +35,8 @@ export default function AiTrainingSection({
   ];
 
   const processSteps = ["LEARN", "APPLY", "IMPROVE"];
+
+  const refImageSrc = "https://images.pexels.com/photos/3184325/pexels-photo-3184325.jpeg?auto=compress&cs=tinysrgb&w=1600";
 
   return (
     <section id="training" className="relative py-24 bg-[#071727] text-foreground border-t border-border/60 overflow-hidden">
@@ -133,14 +127,10 @@ export default function AiTrainingSection({
               {/* Expanded Image Container */}
               <div className="relative flex-1 min-h-[300px] w-full rounded-xl overflow-hidden bg-slate-900">
                 <img
-                  src={imageSrc}
-                  alt={imageAlt || t("ภาพหุ่นยนต์กำลังสอนและแนะนำเรื่อง AI ในห้องเรียนสมัยใหม่", "AI Robot Instructor Teaching in Modern Classroom")}
+                  src={refImageSrc}
+                  alt={t("ภาพบรรยากาศการอบรม AI และดิจิทัล", "AI & Digital Training Workshop")}
                   className="w-full h-full object-cover object-center transform group-hover:scale-[1.03] transition-transform duration-500"
                 />
-                <div className="absolute top-3 left-3 px-3 py-1.5 rounded-lg bg-slate-950/80 backdrop-blur-md border border-teal-500/40 text-xs font-mono text-teal-300 flex items-center gap-2 shadow-lg z-10">
-                  <Bot className="w-4 h-4 text-emerald-400" />
-                  <span>{t("AI ROBOT INSTRUCTOR", "AI ROBOT INSTRUCTOR")}</span>
-                </div>
               </div>
 
               {/* Integrated Process Pill Badge Bar: LEARN -> APPLY -> IMPROVE */}
