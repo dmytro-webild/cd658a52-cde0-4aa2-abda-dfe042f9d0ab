@@ -36,7 +36,7 @@ export default function AiTrainingSection() {
 
   const processSteps = ["LEARN", "APPLY", "IMPROVE"];
 
-  const refImageSrc = "https://storage.googleapis.com/webild/users/user_3MVXxuJnaQd6WXXoRiQdmiVZRX7/uploaded-1795451278303-oh0xqvvs.png";
+  const refImageSrc = "https://img.b2bpic.net/free-photo/3d-modern-background-with-rainbow-coloured-flowing-particles-design_1048-20453.jpg";
 
   return (
     <section id="training" className="relative py-24 bg-[#071727] text-foreground border-t border-border/60 overflow-hidden">
@@ -128,7 +128,7 @@ export default function AiTrainingSection() {
               <div className="relative rounded-xl overflow-hidden bg-slate-900 aspect-[16/9]">
                 <img
                   src={refImageSrc}
-                  alt="AI & Digital Training Team Adoption"
+                  alt="AI & Digital Training 3D Visualization"
                   className="w-full h-full object-cover object-center transform group-hover:scale-[1.02] transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent flex items-end justify-between p-5">
