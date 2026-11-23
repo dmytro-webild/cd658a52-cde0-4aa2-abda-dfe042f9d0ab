@@ -99,21 +99,6 @@ const HeroColumnGrid = ({
           style={{ opacity: textOpacity, y: textY }}
           className="absolute inset-0 z-[3] mx-auto flex w-[var(--container)] flex-col items-center justify-center pt-[4.5rem] text-center"
         >
-          <motion.div
-            {...rise(introDelay > 0.1 ? introDelay - 0.1 : 0)}
-            className="mb-5 inline-flex items-center gap-3.5 px-5 py-2.5 rounded-full bg-card/95 border border-primary/60 backdrop-blur-md shadow-2xl"
-          >
-            <img
-              src="https://storage.googleapis.com/webild/users/user_3MVXxuJnaQd6WXXoRiQdmiVZRX7/uploaded-1795449424437-w0zxe8y6.png"
-              alt="BYITS Logo Symbol"
-              className="h-9 md:h-11 w-auto object-contain shrink-0 filter drop-shadow-md"
-            />
-            <div className="flex flex-col text-left">
-              <span className="font-extrabold text-base md:text-lg tracking-tight text-white leading-none">BYITS</span>
-              <span className="text-[10px] md:text-xs text-primary font-bold tracking-wider uppercase whitespace-nowrap mt-0.5">BEYOND IT SOLUTIONS CO.,LTD.</span>
-            </div>
-          </motion.div>
-
           <MaskedLineReveal
             tag="h1"
             text={title}
