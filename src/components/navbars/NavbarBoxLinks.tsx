@@ -53,7 +53,7 @@ const NavbarBoxLinks = ({
   });
 
   const logo = logoSrc ? (
-    <img src={logoSrc} alt={brand} loading="eager" decoding="async" className="h-[1.5rem] w-auto max-w-[8rem] object-contain" />
+    <img src={logoSrc} alt={brand} loading="eager" decoding="async" className="h-7 md:h-8 w-auto max-w-[10rem] object-contain shrink-0" />
   ) : (
     <p className="whitespace-nowrap font-[family-name:var(--font-heading)] text-[length:var(--text-body-lg)] leading-none tracking-[-0.05em]">{brand}</p>
   );
