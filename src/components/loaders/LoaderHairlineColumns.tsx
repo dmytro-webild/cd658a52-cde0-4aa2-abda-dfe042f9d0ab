@@ -89,14 +89,22 @@ const LoaderHairlineColumns = ({ brand = "©Solvar", logoSrc, onComplete, liftAt
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="overflow-hidden p-2">
           {logoSrc ? (
-            <motion.img
-              src={logoSrc}
-              alt={brand}
+            <motion.div
               initial={{ transform: "translateY(110%)" }}
               animate={{ transform: phase === "in" ? "translateY(0%)" : "translateY(-110%)" }}
               transition={phase === "in" ? { duration: 0.8, ease: EASE_OUT, delay: 0.4 } : { duration: 0.45, ease: EASE_WIPE }}
-              className="h-10 md:h-12 w-auto max-w-[14rem] object-contain"
-            />
+              className="flex items-center gap-3"
+            >
+              <img
+                src={logoSrc}
+                alt={brand}
+                className="h-12 md:h-14 w-auto max-w-[16rem] object-contain filter drop-shadow-md"
+              />
+              <div className="flex flex-col text-left justify-center">
+                <span className="font-extrabold text-lg md:text-xl leading-tight tracking-tight text-white">{brand}</span>
+                <span className="text-[10px] md:text-xs text-primary font-bold tracking-wider uppercase whitespace-nowrap mt-0.5">BEYOND IT SOLUTIONS CO.,LTD.</span>
+              </div>
+            </motion.div>
           ) : (
             <motion.p
               initial={{ transform: "translateY(110%)" }}

@@ -11,7 +11,7 @@ export default function Layout() {
       <header data-webild-section="Header">
         <NavbarBoxLinks
           brand="BYITS"
-          logoSrc="https://storage.googleapis.com/webild/users/user_3MVXxuJnaQd6WXXoRiQdmiVZRX7/uploaded-1795440569491-7wr8bf8n.png"
+          logoSrc="https://storage.googleapis.com/webild/users/user_3MVXxuJnaQd6WXXoRiQdmiVZRX7/uploaded-1795449424437-w0zxe8y6.png"
           navItems={[
             {
               name: t("บริการ AI API Token", "AI API & Tokens"),
@@ -44,7 +44,7 @@ export default function Layout() {
       </main>
       <footer data-webild-section="Footer" data-section="footer">
         <FooterLimeWordmark
-          logoSrc="https://storage.googleapis.com/webild/users/user_3MVXxuJnaQd6WXXoRiQdmiVZRX7/uploaded-1795440569491-7wr8bf8n.png"
+          logoSrc="https://storage.googleapis.com/webild/users/user_3MVXxuJnaQd6WXXoRiQdmiVZRX7/uploaded-1795449424437-w0zxe8y6.png"
           description={t(
             "ยกระดับการทำงานขององค์กรด้วย AI โซลูชัน เชื่อมต่อข้อมูล ระบบ และงานขององค์กรเพื่อให้ทีมทำงานได้เร็วขึ้นและปลอดภัย",
             "Elevate your enterprise productivity with tailored AI solutions. Connect data, systems, and operations seamlessly and securely."
