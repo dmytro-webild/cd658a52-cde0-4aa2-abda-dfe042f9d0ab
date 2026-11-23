@@ -18,8 +18,16 @@ export default function Layout() {
               href: "#api-tokens"
             },
             {
-              name: t("โซลูชัน AI", "AI Solutions"),
+              name: t("โซลูชัน AI Workflow", "AI Solutions"),
               href: "#services"
+            },
+            {
+              name: t("แพลตฟอร์ม AI 8 โมดูล", "Enterprise Platform"),
+              href: "#enterprise-platform"
+            },
+            {
+              name: t("หลักสูตรอบรม AI", "AI Training"),
+              href: "#training"
             },
             {
               name: t("แพลตฟอร์มที่รองรับ", "Supported Platforms"),
@@ -66,15 +74,15 @@ export default function Layout() {
                   href: "#services"
                 },
                 {
+                  text: "BYITS Enterprise AI Platform (8 Modules)",
+                  href: "#enterprise-platform"
+                },
+                {
+                  text: "AI & Digital Training",
+                  href: "#training"
+                },
+                {
                   text: "Supported Technology Platforms",
-                  href: "#supported-platforms"
-                },
-                {
-                  text: "Cybersecurity & Recovery",
-                  href: "#supported-platforms"
-                },
-                {
-                  text: "Cloud Workplace & IT",
                   href: "#supported-platforms"
                 }
               ]
@@ -89,6 +97,14 @@ export default function Layout() {
                 {
                   text: t("บริการ AI API Token", "AI API Tokens"),
                   href: "#api-tokens"
+                },
+                {
+                  text: t("BYITS Enterprise Platform", "Enterprise Platform"),
+                  href: "#enterprise-platform"
+                },
+                {
+                  text: t("หลักสูตรอบรม AI", "AI Training"),
+                  href: "#training"
                 },
                 {
                   text: t("เทคโนโลยีที่รองรับ", "Supported Platforms"),

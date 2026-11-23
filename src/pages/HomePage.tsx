@@ -1,6 +1,8 @@
 import HeroColumnGrid from "@/components/sections/hero/HeroColumnGrid";
 import ServicesIndustryTiles from "@/components/sections/features/ServicesIndustryTiles";
 import AiApiTokenSection from "@/components/sections/api-tokens/AiApiTokenSection";
+import EnterpriseAiPlatformSection from "@/components/sections/platform/EnterpriseAiPlatformSection";
+import AiTrainingSection from "@/components/sections/training/AiTrainingSection";
 import SupportedPlatformsSection from "@/components/sections/platforms/SupportedPlatformsSection";
 import CtaPlusBand from "@/components/sections/statement/CtaPlusBand";
 import FaqGlyphRows from "@/components/sections/faq/FaqGlyphRows";
@@ -154,6 +156,14 @@ export default function HomePage() {
             }
           ]}
         />
+      </div>
+
+      <div id="enterprise-platform" data-webild-section="EnterpriseAiPlatformSection" data-webild-section-id="EnterpriseAiPlatformSection-1" data-section="enterprise-platform">
+        <EnterpriseAiPlatformSection />
+      </div>
+
+      <div id="training" data-webild-section="AiTrainingSection" data-webild-section-id="AiTrainingSection-1" data-section="training">
+        <AiTrainingSection />
       </div>
 
       <div id="supported-platforms" data-webild-section="SupportedPlatformsSection" data-webild-section-id="SupportedPlatformsSection-1" data-section="supported-platforms">
