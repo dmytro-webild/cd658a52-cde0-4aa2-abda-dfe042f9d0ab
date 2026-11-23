@@ -34,9 +34,10 @@ const strips = [0, 1, 2, 3];
 
 const columns = (count: number) => {
   if (count <= 1) return "grid-cols-1";
-  if (count === 2) return "grid-cols-1 lg:grid-cols-2";
-  if (count === 3) return "grid-cols-1 lg:grid-cols-3";
-  return "grid-cols-1 lg:grid-cols-2 xl:grid-cols-4";
+  if (count === 2) return "grid-cols-1 md:grid-cols-2";
+  if (count === 3) return "grid-cols-1 md:grid-cols-3";
+  if (count === 4) return "grid-cols-1 md:grid-cols-2 lg:grid-cols-4";
+  return "grid-cols-1 md:grid-cols-2 lg:grid-cols-3";
 };
 
 type FlipCardProps = { item: Industry; index: number; linkText: string; reduce: boolean };
@@ -88,6 +89,7 @@ const FlipCard = ({ item, index, linkText, reduce }: FlipCardProps) => {
             !reduce && flipped && "rotate-y-180"
           )}
         >
+          {/* FRONT CARD */}
           <div
             ref={frontRef}
             role="button"
@@ -100,28 +102,28 @@ const FlipCard = ({ item, index, linkText, reduce }: FlipCardProps) => {
             onClick={openCard}
             onKeyDown={onFrontKey}
             className={cn(
-              "kit-card group absolute inset-0 flex cursor-pointer flex-col items-center justify-center gap-[clamp(1.25rem,2vw,2rem)] overflow-hidden p-[1rem] text-center outline-none backface-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+              "kit-card group absolute inset-0 flex cursor-pointer flex-col justify-end overflow-hidden p-6 lg:p-7 text-left outline-none backface-hidden rounded-[var(--radius-card)] border border-border/80 hover:border-accent/60 transition-all duration-300 shadow-xl",
               flipped && "pointer-events-none",
               reduce && "transition-opacity duration-[var(--dur-base)] ease-[var(--ease-out)]",
               reduce && flipped && "opacity-0"
             )}
           >
-            <div aria-hidden="true" className="absolute right-[1rem] top-[1rem] grid size-[2.25rem] place-items-center rounded-full bg-[color-mix(in_srgb,var(--foreground)_12%,transparent)] text-foreground transition-colors duration-[var(--dur-base)] ease-[var(--ease-out)] group-focus-visible:bg-accent group-focus-visible:text-accent-foreground lg:group-hover:bg-accent lg:group-hover:text-accent-foreground">
-              <svg viewBox="0 0 16 16" className="size-[1rem]" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round">
-                <path d="M8 2.5v11M2.5 8h11" />
-              </svg>
-            </div>
+            {/* FULL BLEED BACKGROUND IMAGE */}
             {item.imageSrc && (
-              <div className="relative aspect-square w-[45%] overflow-hidden">
+              <div className="absolute inset-0 size-full overflow-hidden">
                 <MotionMedia
                   src={item.imageSrc}
                   alt={item.imageAlt ?? item.title}
                   loading="lazy"
                   decoding="async"
-                  variants={reduce ? undefined : { hidden: { scale: 1.08 }, shown: { scale: 1, transition: { duration: kit.slow, ease: kit.ease, delay: 0.15 } } }}
-                  className="size-full object-cover"
+                  variants={reduce ? undefined : { hidden: { scale: 1.15 }, shown: { scale: 1, transition: { duration: kit.slow, ease: kit.ease, delay: 0.15 } } }}
+                  className="size-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                 />
-                <div aria-hidden="true" className="pointer-events-none absolute inset-0 grid grid-cols-4">
+                {/* GRADIENT OVERLAY FOR TEXT VISIBILITY & CONTRAST */}
+                <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-deep/95 via-deep/60 to-black/35 transition-colors duration-300 group-hover:from-deep group-hover:via-deep/75" />
+                
+                {/* ENTRY STRIP REVEAL ANIMATION */}
+                <div aria-hidden="true" className="pointer-events-none absolute inset-0 grid grid-cols-4 z-10">
                   {strips.map((strip) => (
                     <motion.div
                       key={strip}
@@ -133,15 +135,44 @@ const FlipCard = ({ item, index, linkText, reduce }: FlipCardProps) => {
                 </div>
               </div>
             )}
-            <h3 className="max-w-[16rem] text-balance text-[length:var(--text-body-lg)] font-medium leading-[1.2] tracking-[-0.04em] [overflow-wrap:anywhere]">{item.title}</h3>
+
+            {/* PLUS (+) EXPAND ICON BUTTON */}
+            <div
+              aria-hidden="true"
+              className="absolute right-4 top-4 z-20 grid size-10 place-items-center rounded-full bg-deep/80 text-foreground border border-white/20 backdrop-blur-md transition-all duration-300 group-hover:bg-accent group-hover:text-accent-foreground group-hover:border-accent shadow-lg"
+            >
+              <svg viewBox="0 0 16 16" className="size-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <path d="M8 2.5v11M2.5 8h11" />
+              </svg>
+            </div>
+
+            {/* FRONT CARD CONTENT WITH HIGH CONTRAST */}
+            <div className="relative z-20 flex flex-col gap-2">
+              <h3 className="text-xl lg:text-2xl font-bold tracking-tight text-foreground drop-shadow-md group-hover:text-accent transition-colors duration-200">
+                {item.title}
+              </h3>
+              {item.description && (
+                <p className="line-clamp-2 text-sm text-foreground/90 leading-relaxed font-normal drop-shadow-sm">
+                  {item.description}
+                </p>
+              )}
+              <div className="mt-1.5 flex items-center gap-1.5 text-xs font-semibold text-accent uppercase tracking-wider">
+                <span>{linkText || "ดูรายละเอียด"}</span>
+                <svg className="size-3.5 transition-transform duration-200 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                </svg>
+              </div>
+            </div>
           </div>
+
+          {/* BACK CARD */}
           <div
             id={backId}
             aria-hidden={!flipped}
             inert={!flipped}
             onKeyDown={onBackKey}
             className={cn(
-              "absolute inset-0 flex flex-col justify-between gap-[1.25rem] overflow-hidden rounded-[var(--radius-card)] bg-deep p-[1.25rem] pt-[4rem] text-accent backface-hidden lg:p-[1.5rem] lg:pt-[4rem]",
+              "absolute inset-0 z-30 flex flex-col justify-between gap-4 overflow-hidden rounded-[var(--radius-card)] bg-deep border border-accent/40 p-5 lg:p-6 pt-14 text-accent backface-hidden shadow-2xl",
               !flipped && "pointer-events-none",
               reduce ? cn("transition-opacity duration-[var(--dur-base)] ease-[var(--ease-out)]", flipped ? "opacity-100" : "opacity-0") : "rotate-y-180"
             )}
@@ -151,25 +182,33 @@ const FlipCard = ({ item, index, linkText, reduce }: FlipCardProps) => {
               type="button"
               aria-label="Close details"
               onClick={closeCard}
-              className="absolute right-[1rem] top-[1rem] grid size-[2.25rem] cursor-pointer place-items-center rounded-full bg-accent text-accent-foreground outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-deep"
+              className="absolute right-4 top-4 grid size-10 cursor-pointer place-items-center rounded-full bg-accent text-accent-foreground outline-none transition-transform hover:scale-110 focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-deep shadow-lg z-40"
             >
-              <svg viewBox="0 0 16 16" aria-hidden="true" className="size-[1rem] rotate-45" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round">
+              <svg viewBox="0 0 16 16" aria-hidden="true" className="size-4 rotate-45" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                 <path d="M8 2.5v11M2.5 8h11" />
               </svg>
             </button>
-            <div className="flex flex-col gap-[0.75rem]">
-              <p className="text-balance text-[length:var(--text-body-lg)] font-medium leading-[1.2] tracking-[-0.04em] [overflow-wrap:anywhere]">{item.title}</p>
-              {item.description && <p className="text-balance text-[length:var(--text-small)] leading-[1.4] text-[color-mix(in_srgb,var(--accent)_72%,var(--deep))]">{item.description}</p>}
+
+            <div className="flex flex-col gap-2">
+              <p className="text-xl lg:text-2xl font-bold tracking-tight text-accent">{item.title}</p>
+              {item.description && (
+                <p className="text-sm lg:text-base leading-relaxed text-foreground/90 font-medium">
+                  {item.description}
+                </p>
+              )}
             </div>
+
             {item.facts && item.facts.length > 0 && (
-              <ul className="flex flex-col border-t border-[color-mix(in_srgb,var(--accent)_22%,transparent)]">
+              <ul className="flex flex-col border-t border-accent/20 my-1">
                 {item.facts.map((fact, factIndex) => (
-                  <li key={factIndex} className="border-b border-[color-mix(in_srgb,var(--accent)_22%,transparent)] py-[0.5rem]">
-                    <p className="text-[length:var(--text-small)] leading-[1.35]">{fact}</p>
+                  <li key={factIndex} className="border-b border-accent/20 py-2 flex items-start gap-2">
+                    <span className="size-1.5 rounded-full bg-accent mt-1.5 shrink-0" />
+                    <p className="text-xs lg:text-sm leading-snug text-foreground/90 font-medium">{fact}</p>
                   </li>
                 ))}
               </ul>
             )}
+
             <HydraArrowPill text={linkText} href={item.href ?? "#"} tone="lime" className="self-start" />
           </div>
         </div>
