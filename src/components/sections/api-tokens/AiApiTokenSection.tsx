@@ -1,150 +1,70 @@
 "use client";
 
-import { Suspense, useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Float, OrbitControls, Html, RoundedBox } from "@react-three/drei";
 import { motion } from "motion/react";
-import * as THREE from "three";
 import { useLanguage } from "@/context/LanguageContext";
 import HydraArrowPill from "@/components/kit/HydraArrowPill";
 
-// -------------------------------------------------------------
-// 3D Workflow Graphic (Business App -> API Token -> AI Models -> Result)
-// -------------------------------------------------------------
-function WorkflowNodes() {
-  const groupRef = useRef<THREE.Group>(null);
-  const particleBeamRef = useRef<THREE.Group>(null);
-
-  useFrame((state) => {
-    const t = state.clock.getElapsedTime();
-    if (groupRef.current) {
-      groupRef.current.rotation.y = Math.sin(t * 0.2) * 0.15;
-    }
-    if (particleBeamRef.current) {
-      particleBeamRef.current.children.forEach((child, i) => {
-        child.position.x = ((t * 1.5 + i * 0.8) % 6) - 3;
-      });
-    }
-  });
-
-  const nodes = [
-    { x: -3, color: "#38bdf8", label: "Business App", badge: "ERP / CRM / Web" },
-    { x: -1, color: "#44e6b5", label: "API Token", badge: "Auth & Usage Cap" },
-    { x: 1, color: "#818cf8", label: "AI Models", badge: "Claude / GPT / DeepSeek" },
-    { x: 3, color: "#f43f5e", label: "Business Result", badge: "Automated ROI" },
-  ];
-
-  return (
-    <group ref={groupRef}>
-      <ambientLight intensity={1.2} />
-      <directionalLight position={[5, 5, 5]} intensity={1.5} />
-      <pointLight position={[0, 0, 3]} intensity={2} color="#44e6b5" />
-
-      {/* Connecting Pipe */}
-      <mesh position={[0, 0, 0]} rotation={[0, 0, Math.PI / 2]}>
-        <cylinderGeometry args={[0.06, 0.06, 6.2, 16]} />
-        <meshStandardMaterial color="#1e293b" metalness={0.8} roughness={0.2} wireframe={false} />
-      </mesh>
-
-      {/* Pulsing Energy Beam Particles */}
-      <group ref={particleBeamRef}>
-        {[0, 1, 2, 3, 4, 5].map((idx) => (
-          <mesh key={idx} position={[0, 0, 0]}>
-            <sphereGeometry args={[0.08, 16, 16]} />
-            <meshBasicMaterial color="#44e6b5" />
-          </mesh>
-        ))}
-      </group>
-
-      {/* Workflow Node Cubes & Spheres */}
-      {nodes.map((node, i) => (
-        <group key={node.label} position={[node.x, 0, 0]}>
-          <Float speed={2} rotationIntensity={0.3} floatIntensity={0.4}>
-            <RoundedBox args={[0.9, 0.9, 0.9]} radius={0.15} smoothness={4}>
-              <meshStandardMaterial
-                color={node.color}
-                metalness={0.4}
-                roughness={0.2}
-                emissive={node.color}
-                emissiveIntensity={0.25}
-              />
-            </RoundedBox>
-            <Html position={[0, 0.75, 0]} center className="pointer-events-none select-none">
-              <div className="flex flex-col items-center min-w-[110px] text-center">
-                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold tracking-wider text-slate-900 bg-emerald-400 shadow-md uppercase">
-                  Step {i + 1}
-                </span>
-                <span className="text-xs font-extrabold text-white mt-1 drop-shadow-md whitespace-nowrap">
-                  {node.label}
-                </span>
-                <span className="text-[9px] text-slate-300 font-medium whitespace-nowrap bg-slate-900/80 px-1.5 py-0.5 rounded border border-slate-700/60 mt-0.5">
-                  {node.badge}
-                </span>
-              </div>
-            </Html>
-          </Float>
-        </group>
-      ))}
-    </group>
-  );
-}
-
-// -------------------------------------------------------------
-// 3D Cost-Comparison Graphic (Unmanaged vs BYITS Managed Tokens)
-// -------------------------------------------------------------
-function CostComparisonBars() {
-  const barsRef = useRef<THREE.Group>(null);
-
-  useFrame((state) => {
-    const t = state.clock.getElapsedTime();
-    if (barsRef.current) {
-      barsRef.current.rotation.y = Math.sin(t * 0.3) * 0.2;
-    }
-  });
-
-  return (
-    <group ref={barsRef} position={[0, -0.6, 0]}>
-      <ambientLight intensity={1.2} />
-      <directionalLight position={[4, 6, 4]} intensity={1.8} />
-
-      {/* Bar 1: Direct API Usage (High Cost) */}
-      <group position={[-1.2, 0, 0]}>
-        <mesh position={[0, 1.3, 0]}>
-          <cylinderGeometry args={[0.45, 0.45, 2.6, 32]} />
-          <meshStandardMaterial color="#ef4444" metalness={0.3} roughness={0.3} emissive="#ef4444" emissiveIntensity={0.2} />
-        </mesh>
-        <Html position={[0, 2.9, 0]} center className="pointer-events-none select-none">
-          <div className="bg-slate-900/90 border border-red-500/50 p-2 rounded-lg text-center shadow-lg min-w-[120px]">
-            <span className="text-[10px] text-red-400 font-semibold block uppercase">Direct API Usage</span>
-            <span className="text-sm font-extrabold text-white">100% Cost</span>
-            <span className="text-[9px] text-slate-400 block mt-0.5">Uncapped & Spiky</span>
-          </div>
-        </Html>
-      </group>
-
-      {/* Bar 2: BYITS Managed Token (Optimized Cost) */}
-      <group position={[1.2, 0, 0]}>
-        <mesh position={[0, 0.7, 0]}>
-          <cylinderGeometry args={[0.45, 0.45, 1.4, 32]} />
-          <meshStandardMaterial color="#44e6b5" metalness={0.5} roughness={0.2} emissive="#44e6b5" emissiveIntensity={0.3} />
-        </mesh>
-        <Html position={[0, 1.7, 0]} center className="pointer-events-none select-none">
-          <div className="bg-slate-900/90 border border-emerald-400/60 p-2 rounded-lg text-center shadow-lg min-w-[130px]">
-            <span className="text-[10px] text-emerald-400 font-semibold block uppercase">BYITS API Token</span>
-            <span className="text-sm font-extrabold text-emerald-300">Save Up To 40%</span>
-            <span className="text-[9px] text-slate-300 block mt-0.5">Quota & Cost Capped</span>
-          </div>
-        </Html>
-      </group>
-
-      {/* Base Grid Floor */}
-      <gridHelper args={[8, 12, "#334155", "#1e293b"]} position={[0, 0, 0]} />
-    </group>
-  );
-}
-
 export default function AiApiTokenSection() {
   const { t } = useLanguage();
+
+  const workflowSteps = [
+    {
+      step: "01",
+      title: t("Business App", "Business App"),
+      subtitle: t("ERP / CRM / Web", "ERP / CRM / Web"),
+      badge: t("Step 1", "Step 1"),
+      color: "sky",
+      borderClass: "border-sky-500/30 bg-sky-950/40 text-sky-400",
+      pillClass: "bg-sky-500/20 text-sky-300 border-sky-500/40",
+      icon: (
+        <svg className="w-6 h-6 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+        </svg>
+      )
+    },
+    {
+      step: "02",
+      title: t("API Token Auth", "API Token Auth"),
+      subtitle: t("Auth & Usage Cap", "Auth & Usage Cap"),
+      badge: t("Step 2", "Step 2"),
+      color: "emerald",
+      borderClass: "border-emerald-500/40 bg-emerald-950/40 text-emerald-400",
+      pillClass: "bg-emerald-500/20 text-emerald-300 border-emerald-500/40",
+      icon: (
+        <svg className="w-6 h-6 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751A11.959 11.959 0 0112 2.714z" />
+        </svg>
+      )
+    },
+    {
+      step: "03",
+      title: t("AI Models", "AI Models"),
+      subtitle: t("Claude / GPT / DeepSeek", "Claude / GPT / DeepSeek"),
+      badge: t("Step 3", "Step 3"),
+      color: "indigo",
+      borderClass: "border-indigo-500/30 bg-indigo-950/40 text-indigo-400",
+      pillClass: "bg-indigo-500/20 text-indigo-300 border-indigo-500/40",
+      icon: (
+        <svg className="w-6 h-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21M6.75 6.75h10.5a1.5 1.5 0 011.5 1.5v8.5a1.5 1.5 0 01-1.5 1.5H6.75a1.5 1.5 0 01-1.5-1.5V8.25a1.5 1.5 0 011.5-1.5z" />
+        </svg>
+      )
+    },
+    {
+      step: "04",
+      title: t("Business Result", "Business Result"),
+      subtitle: t("Automated ROI", "Automated ROI"),
+      badge: t("Step 4", "Step 4"),
+      color: "rose",
+      borderClass: "border-rose-500/30 bg-rose-950/40 text-rose-400",
+      pillClass: "bg-rose-500/20 text-rose-300 border-rose-500/40",
+      icon: (
+        <svg className="w-6 h-6 text-rose-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 005.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
+        </svg>
+      )
+    }
+  ];
 
   return (
     <section id="api-tokens" className="relative py-24 bg-[#071521] text-foreground border-t border-border/60 overflow-hidden">
@@ -189,9 +109,9 @@ export default function AiApiTokenSection() {
           </motion.p>
         </div>
 
-        {/* 3D Graphics Grid (2 Columns: Workflow & Cost Comparison) */}
+        {/* 2D Graphics Grid (2 Columns: 2D Workflow & 2D Cost Comparison) */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-          {/* Graphic 1: Workflow */}
+          {/* Graphic 1: Clean 2D Workflow Architecture */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -201,28 +121,72 @@ export default function AiApiTokenSection() {
             <div>
               <div className="flex items-center justify-between mb-3">
                 <h3 className="text-xl font-bold text-white">
-                  {t("3D Workflow Architecture", "3D Workflow Architecture")}
+                  {t("ขั้นตอนการทำงาน AI API Token", "AI API Token Workflow Architecture")}
                 </h3>
                 <span className="text-xs font-semibold px-2.5 py-1 rounded bg-sky-950 text-sky-400 border border-sky-800">
                   Business App → AI Model
                 </span>
               </div>
-              <p className="text-xs text-muted-foreground mb-4">
+              <p className="text-xs text-muted-foreground mb-6">
                 {t(
-                  "แผนภูมิ 3 มิติ แสดงกระบวนการส่งผ่านข้อมูลจากแอปพลิเคชันธุรกิจ ผ่าน API Token เข้าสู่ AI Models",
-                  "3D interactive graphic showing data flow from Business Apps through API Tokens to AI Models."
+                  "ภาพกราฟิก 2 มิติ แสดงขั้นตอนการส่งผ่านข้อมูลจากแอปพลิเคชันธุรกิจ ผ่าน API Token เข้าสู่ AI Models อย่างชัดเจน",
+                  "Clean 2D workflow diagram showing data flow from Business Apps through API Tokens to AI Models."
                 )}
               </p>
             </div>
 
-            {/* Canvas Container */}
-            <div className="w-full h-72 md:h-80 rounded-xl bg-slate-950/80 border border-slate-800/80 overflow-hidden relative">
-              <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
-                <Suspense fallback={null}>
-                  <WorkflowNodes />
-                  <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
-                </Suspense>
-              </Canvas>
+            {/* 2D Workflow Graphic Visual Container */}
+            <div className="w-full rounded-xl bg-slate-950/90 border border-slate-800/90 p-5 relative overflow-hidden flex flex-col justify-between gap-5">
+              {/* Header Status Bar */}
+              <div className="flex items-center justify-between border-b border-slate-800/80 pb-3">
+                <div className="flex items-center gap-2">
+                  <span className="relative flex h-2.5 w-2.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                  </span>
+                  <span className="text-[11px] font-mono tracking-wider font-semibold text-emerald-400 uppercase">
+                    {t("2D LIVE PIPELINE FLOW", "2D LIVE PIPELINE FLOW")}
+                  </span>
+                </div>
+                <span className="text-[10px] text-slate-400 font-mono bg-slate-900 px-2 py-0.5 rounded border border-slate-800">
+                  REST / JSON API
+                </span>
+              </div>
+
+              {/* 4 Step Diagram Nodes */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 relative z-10">
+                {workflowSteps.map((item, idx) => (
+                  <div
+                    key={item.step}
+                    className={`rounded-xl border ${item.borderClass} p-3.5 flex flex-col justify-between relative transition-all duration-200 hover:border-slate-600 hover:translate-y-[-2px] shadow-lg`}
+                  >
+                    <div className="flex items-center justify-between mb-2">
+                      <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${item.pillClass}`}>
+                        {item.badge}
+                      </span>
+                      <div className="p-1.5 rounded-lg bg-slate-900/80 border border-slate-800">
+                        {item.icon}
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-bold text-white mb-0.5">{item.title}</h4>
+                      <p className="text-[11px] text-slate-300 font-medium">{item.subtitle}</p>
+                    </div>
+
+                    {/* Step Connection Indicator */}
+                    {idx < workflowSteps.length - 1 && (
+                      <div className="hidden sm:block absolute -right-2 top-1/2 -translate-y-1/2 z-20 pointer-events-none">
+                        <span className="text-slate-500 text-xs font-bold">→</span>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              {/* Flow Progress Line */}
+              <div className="w-full bg-slate-900 h-2 rounded-full overflow-hidden relative border border-slate-800">
+                <div className="h-full bg-gradient-to-r from-sky-400 via-emerald-400 to-indigo-400 rounded-full w-full animate-pulse opacity-80" />
+              </div>
             </div>
 
             <ul className="grid grid-cols-2 gap-2 mt-4 text-[11px] text-slate-300">
@@ -245,7 +209,7 @@ export default function AiApiTokenSection() {
             </ul>
           </motion.div>
 
-          {/* Graphic 2: Cost Comparison */}
+          {/* Graphic 2: Clean 2D Cost Optimization Comparison */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -255,28 +219,83 @@ export default function AiApiTokenSection() {
             <div>
               <div className="flex items-center justify-between mb-3">
                 <h3 className="text-xl font-bold text-white">
-                  {t("3D Cost Optimization Comparison", "3D Cost Optimization Comparison")}
+                  {t("การเปรียบเทียบต้นทุนแบบ 2D", "2D Cost Optimization Comparison")}
                 </h3>
                 <span className="text-xs font-semibold px-2.5 py-1 rounded bg-emerald-950 text-emerald-400 border border-emerald-800">
                   Cost Savings & Control
                 </span>
               </div>
-              <p className="text-xs text-muted-foreground mb-4">
+              <p className="text-xs text-muted-foreground mb-6">
                 {t(
                   "เปรียบเทียบต้นทุนระหว่างการเรียกใช้ API โดยตรง กับการบริหารผ่าน BYITS Managed Token",
-                  "3D cost model illustrating unmanaged direct API costs versus BYITS Token optimization."
+                  "Clean 2D cost model illustrating unmanaged direct API costs versus BYITS Token optimization."
                 )}
               </p>
             </div>
 
-            {/* Canvas Container */}
-            <div className="w-full h-72 md:h-80 rounded-xl bg-slate-950/80 border border-slate-800/80 overflow-hidden relative">
-              <Canvas camera={{ position: [0, 2, 4.5], fov: 45 }}>
-                <Suspense fallback={null}>
-                  <CostComparisonBars />
-                  <OrbitControls enableZoom={false} />
-                </Suspense>
-              </Canvas>
+            {/* 2D Cost Comparison Visual Container */}
+            <div className="w-full rounded-xl bg-slate-950/90 border border-slate-800/90 p-5 relative overflow-hidden flex flex-col justify-between gap-5">
+              {/* Header Status Bar */}
+              <div className="flex items-center justify-between border-b border-slate-800/80 pb-3">
+                <span className="text-[11px] font-mono tracking-wider font-semibold text-slate-300 uppercase">
+                  {t("API COST EFFICIENCY ANALYSIS", "API COST EFFICIENCY ANALYSIS")}
+                </span>
+                <span className="text-[10px] text-emerald-400 font-bold bg-emerald-950/90 px-2 py-0.5 rounded border border-emerald-700/60">
+                  {t("ประหยัดสูงสุด 40%", "UP TO 40% SAVINGS")}
+                </span>
+              </div>
+
+              {/* Bar 1: Direct API Usage */}
+              <div className="space-y-1.5">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="font-bold text-red-400 flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-red-500" />
+                    {t("Direct API Usage (ไม่ผ่านการควบคุม)", "Direct API Usage (Unmanaged)")}
+                  </span>
+                  <span className="font-mono font-bold text-white">100% {t("งบเต็ม", "Cost")}</span>
+                </div>
+                <div className="w-full bg-slate-900 h-7 rounded-lg overflow-hidden p-1 border border-slate-800 relative">
+                  <div className="h-full bg-gradient-to-r from-red-800 via-red-600 to-rose-500 rounded-md w-full flex items-center justify-end px-3">
+                    <span className="text-[10px] font-extrabold text-white tracking-wider uppercase drop-shadow">
+                      {t("เสี่ยงงบบานปลาย & ไม่มี Cap", "High Cost & Uncapped")}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Bar 2: BYITS Managed API Token */}
+              <div className="space-y-1.5">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="font-bold text-emerald-400 flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                    {t("BYITS Managed API Token", "BYITS Managed API Token")}
+                  </span>
+                  <span className="font-mono font-bold text-emerald-300">~60% {t("งบที่ใช้จริง", "Cost")}</span>
+                </div>
+                <div className="w-full bg-slate-900 h-7 rounded-lg overflow-hidden p-1 border border-slate-800 relative">
+                  <div className="h-full bg-gradient-to-r from-emerald-700 via-emerald-500 to-teal-400 rounded-md w-[60%] flex items-center justify-end px-3 shadow-[0_0_12px_rgba(52,211,153,0.4)]">
+                    <span className="text-[10px] font-extrabold text-slate-950 tracking-wider uppercase">
+                      {t("ควบคุมงบ & ปลอดภัย", "Quota & Cost Capped")}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* 2D Metrics Callout Grid */}
+              <div className="grid grid-cols-3 gap-2 pt-2 border-t border-slate-800/80 text-center">
+                <div className="bg-slate-900/80 p-2 rounded-lg border border-slate-800">
+                  <span className="text-[10px] text-slate-400 block">{t("การจำกัดวงเงิน", "Budget Cap")}</span>
+                  <span className="text-xs font-bold text-emerald-400">{t("จำกัดได้ 100%", "Enforced")}</span>
+                </div>
+                <div className="bg-slate-900/80 p-2 rounded-lg border border-slate-800">
+                  <span className="text-[10px] text-slate-400 block">{t("โมเดล AI", "AI Routing")}</span>
+                  <span className="text-xs font-bold text-sky-400">{t("Smart Multi-LLM", "Multi-LLM")}</span>
+                </div>
+                <div className="bg-slate-900/80 p-2 rounded-lg border border-slate-800">
+                  <span className="text-[10px] text-slate-400 block">{t("การแจ้งเตือน", "Alerts")}</span>
+                  <span className="text-xs font-bold text-amber-400">{t("Real-time", "Real-time")}</span>
+                </div>
+              </div>
             </div>
 
             {/* Disclaimer */}
