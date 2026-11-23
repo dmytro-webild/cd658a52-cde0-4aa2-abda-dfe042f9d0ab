@@ -5,6 +5,7 @@ import { motion, useReducedMotion } from "motion/react";
 
 type LoaderHairlineColumnsProps = {
   brand?: string;
+  logoSrc?: string;
   onComplete?: () => void;
   liftAt?: number;
   doneAt?: number;
@@ -21,7 +22,7 @@ const isDesktop = () => typeof window !== "undefined" && window.matchMedia("(min
 const edge = (index: number, count: number, desktop: boolean) =>
   desktop ? `calc(50% - var(--container) / 2 + var(--container) * ${index / count})` : `${(index / count) * 100}%`;
 
-const LoaderHairlineColumns = ({ brand = "©Solvar", onComplete, liftAt = 1.25, doneAt = 2.3 }: LoaderHairlineColumnsProps) => {
+const LoaderHairlineColumns = ({ brand = "©Solvar", logoSrc, onComplete, liftAt = 1.25, doneAt = 2.3 }: LoaderHairlineColumnsProps) => {
   const reduce = useReducedMotion();
   const [visible, setVisible] = useState(true);
   const [phase, setPhase] = useState<"in" | "out" | "lift">("in");
@@ -86,15 +87,26 @@ const LoaderHairlineColumns = ({ brand = "©Solvar", onComplete, liftAt = 1.25, 
       </div>
 
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="overflow-hidden pb-[0.15em] -mb-[0.15em]">
-          <motion.p
-            initial={{ transform: "translateY(110%)" }}
-            animate={{ transform: phase === "in" ? "translateY(0%)" : "translateY(-110%)" }}
-            transition={phase === "in" ? { duration: 0.8, ease: EASE_OUT, delay: 0.4 } : { duration: 0.45, ease: EASE_WIPE }}
-            className="whitespace-nowrap font-[family-name:var(--font-heading)] text-[length:var(--text-h3)] leading-[1.1] tracking-[var(--heading-tracking)] text-accent"
-          >
-            {brand}
-          </motion.p>
+        <div className="overflow-hidden p-2">
+          {logoSrc ? (
+            <motion.img
+              src={logoSrc}
+              alt={brand}
+              initial={{ transform: "translateY(110%)" }}
+              animate={{ transform: phase === "in" ? "translateY(0%)" : "translateY(-110%)" }}
+              transition={phase === "in" ? { duration: 0.8, ease: EASE_OUT, delay: 0.4 } : { duration: 0.45, ease: EASE_WIPE }}
+              className="h-10 md:h-12 w-auto max-w-[14rem] object-contain"
+            />
+          ) : (
+            <motion.p
+              initial={{ transform: "translateY(110%)" }}
+              animate={{ transform: phase === "in" ? "translateY(0%)" : "translateY(-110%)" }}
+              transition={phase === "in" ? { duration: 0.8, ease: EASE_OUT, delay: 0.4 } : { duration: 0.45, ease: EASE_WIPE }}
+              className="whitespace-nowrap font-[family-name:var(--font-heading)] text-[length:var(--text-h3)] leading-[1.1] tracking-[var(--heading-tracking)] text-accent"
+            >
+              {brand}
+            </motion.p>
+          )}
         </div>
       </div>
     </div>

@@ -13,6 +13,7 @@ type FooterColumn = { title: string; links: FooterLink[] };
 
 type FooterLimeWordmarkProps = {
   description?: string;
+  logoSrc?: string;
   primaryButton?: { text: string; href?: string };
   columns?: FooterColumn[];
   wordmark?: string;
@@ -38,6 +39,7 @@ const formatTime = (timeZone: string) => {
 
 const FooterLimeWordmark = ({
   description = "Start your project today. Tell us about your site and let's work together to reach your goals.",
+  logoSrc,
   primaryButton = { text: "Start a project", href: "#contact" },
   columns = defaultColumns,
   wordmark = "©Studio",
@@ -75,6 +77,11 @@ const FooterLimeWordmark = ({
       <footer className="relative mx-auto flex w-[var(--container)] flex-col gap-[clamp(3.5rem,7.5vw,7rem)]">
         <div className="flex flex-col gap-12 lg:flex-row lg:justify-between lg:gap-[var(--gap)]">
           <div className="flex max-w-[25rem] flex-col items-start gap-4">
+            {logoSrc && (
+              <motion.div {...rise(0)}>
+                <img src={logoSrc} alt={wordmark ?? "Company Logo"} className="h-8 md:h-10 w-auto max-w-[12rem] object-contain mb-1" />
+              </motion.div>
+            )}
             {description && (
               <motion.p {...rise(0)} className="text-balance text-[length:var(--text-body-lg)] font-medium leading-[1.2] tracking-[-0.04em]">
                 {description}
