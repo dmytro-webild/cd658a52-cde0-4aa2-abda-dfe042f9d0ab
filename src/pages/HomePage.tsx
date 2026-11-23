@@ -15,7 +15,7 @@ export default function HomePage() {
     <>
       <LoaderHairlineColumns
         brand="BYITS"
-        logoSrc="https://storage.googleapis.com/webild/users/user_3MVXxuJnaQd6WXXoRiQdmiVZRX7/uploaded-1795438520588-g0x1llz0.png"
+        logoSrc="https://storage.googleapis.com/webild/users/user_3MVXxuJnaQd6WXXoRiQdmiVZRX7/uploaded-1795440569491-7wr8bf8n.png"
       />
 
       <div id="hero" data-webild-section="HeroColumnGrid" data-webild-section-id="HeroColumnGrid-1" data-section="hero" data-scene>
