@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { GraduationCap, Users, UserCheck, Sliders, ArrowRight, CheckCircle2 } from "lucide-react";
+import { GraduationCap, Users, UserCheck, Sliders, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
 export default function AiTrainingSection() {
@@ -80,9 +80,9 @@ export default function AiTrainingSection() {
         </div>
 
         {/* Main 2-Column Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-16">
           {/* Left Column: 3 Training Options */}
-          <div className="lg:col-span-6 space-y-5">
+          <div className="lg:col-span-6 space-y-5 flex flex-col justify-between">
             {courses.map((course, idx) => {
               const IconComponent = course.icon;
               return (
@@ -92,7 +92,7 @@ export default function AiTrainingSection() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.12 }}
-                  className="rounded-2xl bg-slate-900/90 border border-slate-800 p-6 flex flex-col sm:flex-row items-start sm:items-center gap-5 hover:border-teal-500/50 hover:bg-slate-850 transition-all duration-200 group shadow-xl relative"
+                  className="rounded-2xl bg-slate-900/90 border border-slate-800 p-6 flex flex-col sm:flex-row items-start sm:items-center gap-5 hover:border-teal-500/50 hover:bg-slate-850 transition-all duration-200 group shadow-xl relative flex-1"
                 >
                   <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500/20 via-teal-500/20 to-sky-500/30 border border-emerald-500/40 text-emerald-300 font-mono font-extrabold text-lg flex items-center justify-center shrink-0 shadow-inner">
                     {course.id}
@@ -116,44 +116,36 @@ export default function AiTrainingSection() {
             })}
           </div>
 
-          {/* Right Column: Hero Visual Image & Adoption Process Badge */}
+          {/* Right Column: Hero Visual Image & Adoption Process Bar */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-6 flex flex-col items-center justify-between h-full"
+            className="lg:col-span-6 flex flex-col h-full"
           >
-            {/* Embedded Visual Image Container */}
-            <div className="w-full rounded-2xl bg-slate-950/90 border border-teal-500/30 p-3 shadow-2xl relative overflow-hidden group">
-              <div className="relative rounded-xl overflow-hidden bg-slate-900 aspect-[16/9]">
+            <div className="w-full h-full flex flex-col justify-between rounded-2xl bg-slate-950/90 border border-teal-500/30 p-3 shadow-2xl relative overflow-hidden group">
+              {/* Expanded Image Container */}
+              <div className="relative flex-1 min-h-[300px] w-full rounded-xl overflow-hidden bg-slate-900">
                 <img
                   src={refImageSrc}
                   alt="AI & Digital Training 3D Visualization"
-                  className="w-full h-full object-cover object-center transform group-hover:scale-[1.02] transition-transform duration-300"
+                  className="w-full h-full object-cover object-center transform group-hover:scale-[1.03] transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent flex items-end justify-between p-5">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-emerald-400" />
-                    <span className="text-xs font-bold text-white tracking-wide">
-                      {t("หลักสูตรพร้อมการนำไปใช้จริง 100%", "100% Practical Workflow Adoption")}
-                    </span>
-                  </div>
-                </div>
               </div>
-            </div>
 
-            {/* Process Pill Badge Bar: LEARN -> APPLY -> IMPROVE */}
-            <div className="mt-6 w-full rounded-full bg-slate-950/90 border border-emerald-500/40 p-2 sm:p-3 flex items-center justify-around shadow-xl">
-              {processSteps.map((step, index) => (
-                <div key={step} className="flex items-center gap-2 sm:gap-4">
-                  <span className="text-xs sm:text-sm font-extrabold font-mono tracking-widest text-emerald-300">
-                    {step}
-                  </span>
-                  {index < processSteps.length - 1 && (
-                    <ArrowRight className="w-4 h-4 text-slate-500 stroke-[2.5]" />
-                  )}
-                </div>
-              ))}
+              {/* Integrated Process Pill Badge Bar: LEARN -> APPLY -> IMPROVE */}
+              <div className="mt-3 w-full rounded-xl bg-slate-900/90 border border-emerald-500/40 p-3.5 flex items-center justify-around shadow-inner">
+                {processSteps.map((step, index) => (
+                  <div key={step} className="flex items-center gap-2 sm:gap-4">
+                    <span className="text-xs sm:text-sm font-extrabold font-mono tracking-widest text-emerald-300">
+                      {step}
+                    </span>
+                    {index < processSteps.length - 1 && (
+                      <ArrowRight className="w-4 h-4 text-slate-500 stroke-[2.5]" />
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
           </motion.div>
         </div>
