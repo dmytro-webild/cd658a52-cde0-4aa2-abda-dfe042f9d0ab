@@ -115,7 +115,7 @@ export default function HomePage() {
                   "Action: IT team swift resolution"
                 ]
               ),
-              imageSrc: "https://img.b2bpic.net/free-photo/data-facility-storing-massive-datasets-used-ai-simulations_482257-124431.jpg",
+              imageSrc: "https://img.b2bpic.net/free-photo/data-facility-storing-massive-datasets-used-ai-simulations_482257-124431.jpg?_wi=1",
               href: "#contact"
             },
             {
@@ -248,7 +248,7 @@ export default function HomePage() {
           successText={t("ทีมงาน BYITS จะติดต่อกลับภายใน 24 ชั่วโมง", "Our BYITS team will get back to you within 24 hours.")}
           images={[
             {
-              imageSrc: "https://img.b2bpic.net/free-photo/data-facility-storing-massive-datasets-used-ai-simulations_482257-124431.jpg",
+              imageSrc: "https://img.b2bpic.net/free-photo/data-facility-storing-massive-datasets-used-ai-simulations_482257-124431.jpg?_wi=2",
               imageAlt: "Data facility storing massive datasets for AI"
             },
             {
