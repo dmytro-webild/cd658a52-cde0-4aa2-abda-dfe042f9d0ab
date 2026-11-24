@@ -248,8 +248,8 @@ export default function HomePage() {
           successText={t("ทีมงาน BYITS จะติดต่อกลับภายใน 24 ชั่วโมง", "Our BYITS team will get back to you within 24 hours.")}
           images={[
             {
-              imageSrc: "https://img.b2bpic.net/free-photo/business-partners-are-shaking-hands-after-establishing-new-project_482257-98080.jpg",
-              imageAlt: "Business partners shaking hands"
+              imageSrc: "https://img.b2bpic.net/free-photo/data-facility-storing-massive-datasets-used-ai-simulations_482257-124431.jpg",
+              imageAlt: "Data facility storing massive datasets for AI"
             },
             {
               imageSrc: "https://img.b2bpic.net/free-photo/black-manager-assesses-reports-tablet_482257-120298.jpg",
