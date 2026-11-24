@@ -17,6 +17,8 @@ type ContactColumnWindowProps = {
   images?: Photo[];
   ariaLabel?: string;
   labels?: { name: string; company: string; email: string; message: string };
+  recipientEmail?: string;
+  ccEmails?: string[];
   className?: string;
 };
 
@@ -38,6 +40,8 @@ const ContactColumnWindow = ({
   images = defaults,
   ariaLabel,
   labels = { name: "Name", company: "Company", email: "Email", message: "Message" },
+  recipientEmail = "Sales@byits.co.th",
+  ccEmails = ["Siwaphorn.h@byits.co.th", "Chintana@byits.co.th"],
   className,
 }: ContactColumnWindowProps) => {
   const reduce = useReducedMotion();
@@ -58,6 +62,24 @@ const ContactColumnWindow = ({
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const name = formData.get("name")?.toString() || "";
+    const company = formData.get("company")?.toString() || "";
+    const email = formData.get("email")?.toString() || "";
+    const message = formData.get("message")?.toString() || "";
+
+    const subject = `[BYITS Website] ข้อความติดต่อจาก ${name || email}`;
+    const bodyText = `ชื่อ-นามสกุล: ${name}
+บริษัท / องค์กร: ${company}
+อีเมลติดต่อ: ${email}
+
+รายละเอียดโซลูชันที่ต้องการ:
+${message}`;
+
+    const ccString = ccEmails.join(",");
+    const mailtoUrl = `mailto:${recipientEmail}?cc=${encodeURIComponent(ccString)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyText)}`;
+
+    window.location.href = mailtoUrl;
     setSent(true);
   };
 
@@ -106,6 +128,20 @@ const ContactColumnWindow = ({
                 </div>
               </button>
               {sent && <p role="status" className="text-[length:var(--text-small)] text-muted-foreground">{successText}</p>}
+            </div>
+            <div className="sm:col-span-2 text-[length:var(--text-small)] text-muted-foreground/80 flex flex-col gap-1 pt-2 border-t border-border/30">
+              <p className="flex items-center gap-1.5 font-mono text-[11px] tracking-wider">
+                <span className="text-muted-foreground">EMAIL TO:</span>
+                <a href={`mailto:${recipientEmail}?cc=${ccEmails.join(",")}`} className="text-foreground hover:underline font-medium">
+                  {recipientEmail}
+                </a>
+              </p>
+              {ccEmails.length > 0 && (
+                <p className="flex flex-wrap items-center gap-1.5 font-mono text-[11px] tracking-wider text-muted-foreground/70">
+                  <span>CC:</span>
+                  <span>{ccEmails.join(", ")}</span>
+                </p>
+              )}
             </div>
           </motion.form>
         </div>
