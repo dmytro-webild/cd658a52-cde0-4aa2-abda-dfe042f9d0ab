@@ -247,7 +247,6 @@ export default function HomePage() {
           submitText={t("ส่งข้อความปรึกษา", "Submit Consultation Request")}
           successText={t("เปิดระบบส่งอีเมลเพื่อส่งข้อมูลถึงทีมงานเรียบร้อยแล้ว", "Opened email application to send request to BYITS team.")}
           recipientEmail="Sales@byits.co.th"
-          ccEmails={["Siwaphorn.h@byits.co.th", "Chintana@byits.co.th"]}
           images={[
             {
               imageSrc: "https://img.b2bpic.net/free-photo/data-facility-storing-massive-datasets-used-ai-simulations_482257-124431.jpg?_wi=2",
